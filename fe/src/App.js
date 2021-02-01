@@ -12,10 +12,8 @@ function App() {
 		switch (screen) {
 			case "InputScreen":
 				return ( <InputScreen /> )
-				break
 			case "Review":
 				return ( <Review /> )
-				break
 			default:
 				return ( <Paper style={{ 
 												backgroundImage: "url(/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg)", 
