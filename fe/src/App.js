@@ -7,7 +7,7 @@ import './App.css';
 
 
 function App() {
-	const [ screen, setScreen ] = useState(null)
+ const [ screen, setScreen ] = useState(null)
 
 	const selectScreen = () => {
 		switch (screen) {
