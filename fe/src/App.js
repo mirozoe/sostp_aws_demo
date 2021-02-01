@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React, { useState } from 'react'
 import { Box, Button, Grid, Paper, Typography} from '@material-ui/core'
 import { InputScreen } from './InputScreen.js'
