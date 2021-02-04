@@ -1,0 +1,127 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usetheme{Dresden}
+
+\title{Teamová práce s kódem}
+\subtitle{Úvod do utility git}
+\author{Miroslav Hlávka}
+\date{2021}
+\titlegraphic{\includegraphics[scale=0.2]{Cc-by-nc_icon.jpg}}
+
+\begin{document}
+
+%Title page
+\frame{\titlepage}
+
+%Content
+\begin{frame}
+	\frametitle{Obsah}
+	\begin{enumerate}
+		\item Proč používat git
+		\item Popis git
+		\item git cheat sheet
+	\end{enumerate}
+\end{frame}
+
+%About git
+\begin{frame}
+	\frametitle{Proč používat git}
+	\begin{itemize}
+		\item git je nástroj pro distribuovanou správu verzí kódu
+		\item Umožňuje práci s lokálním a vzdáleným úložištěm
+		\item Hlavní přednosti jsou kompletní historie vývoje, možnost vytvářet vývojové větve, kontrolovaný způsob zcelování (merge) větví, robustnost
+		\item Tvůrcem je Linus Torvalds (2005)
+	\end{itemize}
+\end{frame}
+
+%git design
+\begin{frame}
+	\frametitle{Design gitu}
+	\begin{itemize}
+		\item V lokálním repozitáři jsou soubory untracked, staged, un/modified
+		\item Stav lokálního repozitáře (unmodified) lze odeslat (HTTP, SSH) do vzdáleného repozitáře
+		\item V teamu vývojářů je pravidlem, často aktualizovat lokální repozitář ze vzdáleného
+	\end{itemize}
+	\begin{block}{Obrázek}
+		https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository
+	\end{block}
+\end{frame}
+
+
+%git commands
+\begin{frame}[fragile]
+	\frametitle{git cheat sheet}
+	\begin{block}{Iniciální nastevení}
+		\begin{verbatim}
+			git init
+			git config --global user.name "NAME"
+			git config --global user.email "EMAIL"
+			git clone URL
+		\end{verbatim}
+	\end{block}
+	\begin{block}{Stav repozitáře}
+		\begin{verbatim}
+			git status
+			git log
+			git diff
+			git reset LOG_ID
+		\end{verbatim}
+	\end{block}
+\end{frame}
+
+%git commands
+\begin{frame}[fragile]
+	\frametitle{git cheat sheet}
+	\begin{block}{Práce s lokálním repozitářem}
+		\begin{verbatim}
+			git add FILE
+			git commit -m "MESSAGE"
+			git reset FILE
+		\end{verbatim}
+	\end{block}
+	\begin{block}{Práce s branch}
+		\begin{verbatim}
+			git branch
+			git branch BRANCH_NAME
+			git switch BRANCH_NAME | git checkout BRANCH_NAME
+			git merge BRANCH_NAME
+		\end{verbatim}
+	\end{block}
+\end{frame}
+
+%git commands
+\begin{frame}[fragile]
+	\frametitle{git cheat sheet}
+	\begin{block}{Práce se vzdáleným repozitářem}
+		\begin{verbatim}
+			git fetch
+			git pull
+			git push
+		\end{verbatim}
+	\end{block}
+	\begin{block}{Dočasný commit}
+		\begin{verbatim}
+			git stash
+			git stash list
+			git stash apply
+			git stash drop
+		\end{verbatim}
+	\end{block}
+\end{frame}
+
+%git commands
+\begin{frame}[fragile]
+	\frametitle{git cheat sheet}
+	\begin{block}{Utilitiy}
+		\begin{verbatim}
+			git show --follow FILE
+			git show LOG_ID
+			git reset --hard LOG_ID
+			git rebase --interactive
+			git checkout FILE
+		\end{verbatim}
+	\end{block}
+\end{frame}
+
+\end{document}

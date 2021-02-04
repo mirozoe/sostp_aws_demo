@@ -4,7 +4,7 @@ import { InputScreen } from './InputScreen.js'
 import { Review } from './Review.js'
 import './App.css';
 
-
+// Main application function
 function App() {
  const [ screen, setScreen ] = useState(null)
 

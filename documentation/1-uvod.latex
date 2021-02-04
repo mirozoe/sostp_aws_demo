@@ -1,0 +1,115 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usetheme{Dresden}
+
+\title{Nastínění současných trendů ve vývoji software}
+\subtitle{AWS serverless služby}
+\author{Miroslav Hlávka}
+\date{2021}
+\titlegraphic{\includegraphics[scale=0.2]{Cc-by-nc_icon.jpg}}
+
+\begin{document}
+
+%Title page
+\frame{\titlepage}
+
+%Content
+\begin{frame}
+	\frametitle{Obsah}
+	\begin{enumerate}
+		\item Obecně o cloud službách
+		\item Teamové práce s kódem (git)
+		\item Představení AWS platformy
+		\item Design software běžící na AWS
+		\item Ukázka využití AWS
+	\end{enumerate}
+\end{frame}
+
+%Why all this happens
+\begin{frame}
+	\frametitle{Proč povídání vzniklo}
+	\begin{itemize}
+		\item Osobní preference
+		\item IT je velmi dynamický obor
+		\item SŠ a VŠ jsou schopné pokrýt pouze malou část běžně používaných přístupů
+		\item Vývoj software s sebou nese potřebu stále se vzdělávat
+		\item Znalost syntaxe 2-3 jazyků opravdu nestačí
+	\end{itemize}
+\end{frame}
+
+%Cloud
+\begin{frame}
+	\frametitle{Trocha historie}
+	\begin{itemize}
+		\item Cloudové služby SaaS (software as a service) - gmail(2004), seznam-email (1998)
+		\item Rozšíření virtualizace s VMware ESX (2001) a VPS (virtual private server) RoseHosting(2001)
+		\item Na trhu se objevují velcí hráči AWS (Amazon web services, 2006), GCP (Google cloud platform, 2007)
+		\item Kontejnery jsou dalším krokem k filosofii microservices - FreeBSD(2000), LXC(2008), Docker(2013)
+		\item Z Google projektu Borg vychází Kubernetes v1.0 (2015)
+	\end{itemize}
+
+	\begin{block}{Další zdroje}
+		https://www.dailyhostnews.com/the-history-of-web-hosting
+		https://blog.aquasec.com/a-brief-history-of-containers-from-1970s-chroot-to-docker-2016
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Typy cloud služeb}
+	\begin{itemize}
+		\item IaaS (infrastructure as a service) - server, networking, firewalling, ...
+		\item PaaS (platform as a service) - vývojové prostředí s OS a dalšími nástroji (např. hostované Kubernetes)
+		\item SaaS (software as a service) - cloud based aplikace
+		\item FaaS (function as a service, serverless) - poskytují runtime a vývojář neřeší nic než vývoj
+	\end{itemize}
+
+	\begin{block}{Další zdroje}
+		https://www.esds.co.in/blog/cloud-computing-types-cloud/
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Výhody FaaS}
+	\begin{itemize}
+		\item FaaS je developer-centric a vývojáři oblíbená
+		\item Žádná vazba na Operations a vše je v rukách vývojáře
+		\item Jedná se o managed services, tedy update OS je na poskytovateli
+		\item Přístup pay-as-you-use a často o dost levnější než u on-premise řešení
+		\item Představuje přenesení capex (capital expenditures) do opex (operating expenditures)
+		\item U startapů a malých projektů mohou být hostingové služby zcela zdarma
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Nevýhody FaaS}
+	\begin{itemize}
+		\item Vendor-lock
+		\item Kalkulace ceny hostingu nemusí být vždy jednoduchá
+		\item Poskytovatelé často podporují omezený počet jazyků
+		\item FaaS mají startup time, tedy odezva může mít zpoždění až desítky sekund
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Co budeme vyvíjet}
+	\begin{itemize}
+		\item Klient požaduje jednoduchý účetní systém
+		\item Budeme implementovat pouze účetní deník (vkládání, výpis)
+		\item Front-end bude psán s využitím React a hostován na AWS Amplify
+		\item Back-end bude v Go a využijeme AWS Lambda
+		\item Data budou uložena v AWS DynamoDB (NoSQL)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Proč právě AWS}
+	\begin{itemize}
+		\item Tradice, spolehlivost, příznivá cena (free tier)
+		\item Stejné služby najdeme u GCP (Firebase, Functions, Firestore) a dalších
+		\item Většinou neexistuje silný důvod preferovat jednoho či druhého poskytovatele
+	\end{itemize}
+\end{frame}
+
+
+\end{document}

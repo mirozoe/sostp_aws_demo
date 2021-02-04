@@ -1,0 +1,20 @@
+{
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-demofe-prod-164130-authRole",
+      "UnauthRoleArn": "arn:aws:iam::045949373633:role/amplify-demofe-prod-164130-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::045949373633:role/amplify-demofe-prod-164130-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-demofe-prod-164130-deployment",
+      "UnauthRoleName": "amplify-demofe-prod-164130-unauthRole",
+      "StackName": "amplify-demofe-prod-164130",
+      "StackId": "arn:aws:cloudformation:us-east-2:045949373633:stack/amplify-demofe-prod-164130/76069a90-66ff-11eb-974b-02b0a996e974",
+      "AmplifyAppId": "d29j47gky07z4q"
+    },
+    "categories": {
+      "auth": {
+        "demofe3004a756": {}
+      }
+    }
+  }
+}

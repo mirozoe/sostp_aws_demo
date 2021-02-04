@@ -1,0 +1,65 @@
+openapi: "3.0.0"
+info:
+  description: "SOSTP Demo application for storing accounting info in DynamoDB and easy overview"
+  version: "1.0.0"
+  title: "SOSTP Demo"
+paths:
+  /journal:
+    get:
+      summary: Returns a accounting journal.
+      description: Returns stored data.
+      responses:
+        '200':    # status code
+          description: A JSON array of accounting items
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  $ref: '#/components/schemas/AccountItem'
+        '401':
+          description: Error reading DB
+  /insert:
+    post:
+      summary: Inserts accounting item into DB
+      description: Inserts accounting item into DB
+      responses:
+        '200':
+          description: Successfuly inserted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountItem'
+              
+        '401':
+          description: Error during insertion
+components:
+  schemas:
+    AccountItem:
+      type: object
+      required:
+      - itemid
+      - description
+      - date
+      - type
+      - price
+      - debit
+      - kredit
+      properties:
+        itemid:
+          type: integer
+          minimum: 0
+        description:
+          type: string
+        date:
+          type: string
+          pattern: '^\d{4}-\d{2}-\d{2}'
+        type:
+          type: string
+        price:
+          type: integer
+          minimum: 0
+        debit:
+          type: integer
+        kredit:
+          type: integer
