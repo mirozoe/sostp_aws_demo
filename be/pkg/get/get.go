@@ -38,6 +38,7 @@ func HandleRequestGet(ctx context.Context, name AccountingItem) (string, error) 
 	return fmt.Sprintf("%+v", *records), nil
 }
 
+
 func fetchItem(dynaClient dynamodbiface.DynamoDBAPI, tableName string) (*[]AccountingItem, error) {
 	input := &dynamodb.ScanInput{
     TableName: aws.String(tableName),

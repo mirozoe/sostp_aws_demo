@@ -1,1 +1,5 @@
 test/*
+be/pkg/get
+be/pkg/get.zip
+be/pkg/insert/insert
+be/pkg/insert/insert.zip

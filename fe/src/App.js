@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Box, Button, Grid, Paper, Typography} from '@material-ui/core'
+import { withAuthenticator } from '@aws-amplify/ui-react'
+
 import { InputScreen } from './InputScreen.js'
 import { Review } from './Review.js'
 import './App.css';
@@ -40,7 +42,7 @@ function App() {
 										variant="contained" 
 										color="secondary"
 										onClick={() => setScreen("Review")}	
-									>Účetní kniha</Button>
+									>Účetní denník</Button>
 								</Grid>
 								<Grid item	>
 									<Button 
@@ -63,4 +65,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);
