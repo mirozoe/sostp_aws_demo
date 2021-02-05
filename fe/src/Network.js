@@ -4,9 +4,31 @@ export const getJournal = async () => {
 	const result = await fetch( `${baseURL}/journal`, {
 		method: 'GET',
 	})
-	console.log(result)
 	if (result.status === 200) {
-		return await result.json()
+		const j = await result.json()
+		return j
 	}
 	return []
+}
+
+export const insertJournal = async (data) => {
+	console.log(data)
+	const result = await fetch( `${baseURL}/insert`, {
+		method: 'POST',
+		headers: {
+      'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			description: data.description,
+			date: data.date,
+			type: data.type,
+			price: parseInt(data.price, 10),
+			debit: parseInt(data.debit, 10),
+			kredit: parseInt(data.kredit, 10)
+		}),
+	})
+	if (result.status === 200) {
+		return true
+	}
+	return false
 }

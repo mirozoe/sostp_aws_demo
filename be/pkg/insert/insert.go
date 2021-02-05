@@ -30,6 +30,7 @@ type AccountingItem struct {
 }
 
 func HandleRequest(ctx context.Context, name AccountingItem) (string, error) {
+	fmt.Println(name)
 	putItemToDB(dynaClient, DBTableName, name)
 	return fmt.Sprintf("Hello!"), nil
 }
