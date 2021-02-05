@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, MenuItem, Paper, Select, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from '@material-ui/core'
+import { Button, MenuItem, Paper, Select, Snackbar, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from '@material-ui/core'
 import { insertJournal } from './Network.js'
 
 
@@ -78,9 +78,9 @@ export const InputScreen = () => {
 		}
 	}
 
+	
 	const handleType = event => setType(event.target.value)
 
-	console.log(saved)
 	return (
 		<>
 		<Typography>Vkládání účetních dokladů</Typography>
@@ -166,6 +166,9 @@ export const InputScreen = () => {
 				</TableBody>
 			</Table>
 		</TableContainer>
+		<Snackbar open={saved} autoHideDuration={6000} onClose={() => setSaved(false)}>
+        Uloženo
+    </Snackbar>
 		</>
 	)
 }
