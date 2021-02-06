@@ -1,12 +1,11 @@
 const baseURL = "https://5u0ws0u3fb.execute-api.us-east-2.amazonaws.com/prod"
 
 export const getJournal = async (token) => {
-	console.log(token)
 	const result = await fetch( `${baseURL}/journal`, {
 		method: 'POST',
-		body: JSON.stringify({
-			accessToken: token
-		})
+		headers: {
+			"Authorization": `Bearer ${token}`
+		}
 	})
 	if (result.status === 200) {
 		const j = await result.json()
@@ -15,11 +14,12 @@ export const getJournal = async (token) => {
 	return []
 }
 
-export const insertJournal = async (data) => {
+export const insertJournal = async (token, data) => {
 	console.log(data)
 	const result = await fetch( `${baseURL}/insert`, {
 		method: 'POST',
 		headers: {
+			'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({

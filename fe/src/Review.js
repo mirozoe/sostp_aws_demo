@@ -10,7 +10,6 @@ export const Review = (props) => {
 		setItems(await getJournal(props.token))
 	}, [])
 
-	items.map( i => console.log(i))
 	return (
 		<>
 		<Typography>Účetní denník</Typography>

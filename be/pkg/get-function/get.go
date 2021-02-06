@@ -3,12 +3,12 @@ package main
 import (
 	"context"
 	"time"
-	"encoding/json"
+//	"encoding/json"
 	"errors"
 	"fmt"
 	"sort"
 
-	"github.com/aws/aws-lambda-go/events"
+//	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -33,27 +33,43 @@ type AccountingItem struct {
 	Kredit int `json:"kredit"`
 }
 
-func HandleRequestGet(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	resp := events.APIGatewayProxyResponse{Headers: make(map[string]string)}
-	resp.Headers["Access-Control-Allow-Origin"] = "*"
-	resp.Headers["Content-Encoding"] = "application/json"
+//func HandleRequestGet(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+//	resp := events.APIGatewayProxyResponse{Headers: make(map[string]string)}
+//	resp.Headers["Access-Control-Allow-Origin"] = "*"
+//	resp.Headers["Content-Encoding"] = "application/json"
+//	records, err := fetchItem(dynaClient, DBTableName)
+//	if err != nil {
+//		fmt.Println(err)
+//		resp.Body = fmt.Sprintf(err.Error())
+//		resp.StatusCode = 401
+//		return resp, err
+//	}
+//	resp.StatusCode = 200
+//	recordsSorted := SortRecordsByDate(*records)
+//	serialized, err := json.Marshal(recordsSorted)
+//	if err != nil {
+//		fmt.Println(err)
+//		resp.StatusCode = 402
+//		return resp, err
+//	}
+//	resp.Body = string(serialized)
+//	return resp, nil
+//	return serialized
+//}
+
+func HandleRequestGet(ctx context.Context) (string, error) {
 	records, err := fetchItem(dynaClient, DBTableName)
 	if err != nil {
 		fmt.Println(err)
-		resp.Body = fmt.Sprintf(err.Error())
-		resp.StatusCode = 401
-		return resp, err
+		return "", err
 	}
-	resp.StatusCode = 200
 	recordsSorted := SortRecordsByDate(*records)
-	serialized, err := json.Marshal(recordsSorted)
-	if err != nil {
-		fmt.Println(err)
-		resp.StatusCode = 402
-		return resp, err
-	}
-	resp.Body = string(serialized)
-	return resp, nil
+//	serialized, err := json.Marshal(recordsSorted)
+//	if err != nil {
+//		fmt.Println(err)
+//		return "", err
+//	}
+	return fmt.Sprintf("%+v", recordsSorted), nil
 }
 
 func parseDate(date string) time.Time {

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Button, MenuItem, Paper, Select, Snackbar, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
+import PropTypes from 'prop-types'
 import { insertJournal } from './Network.js'
 
 
-export const InputScreen = () => {
+export const InputScreen = (props) => {
 	const [ date, setDate ] = useState("")
 	const [ desc, setDesc ] = useState("")
 	const [ type, setType ] = useState("FP")
@@ -71,7 +72,7 @@ export const InputScreen = () => {
 				debit: debit,
 				kredit: kredit
 			}
-			insertJournal(d).then( result => {
+			insertJournal(props.token, d).then( result => {
 				setSaved(result)
 				zeroizeErrors()
 				zeroizeValues()
@@ -179,4 +180,8 @@ export const InputScreen = () => {
 		</Snackbar>
 		</>
 	)
+}
+
+InputScreen.propTypes = {
+	token: PropTypes.string
 }

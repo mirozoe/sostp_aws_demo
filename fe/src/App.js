@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Button, Grid, Paper, Typography} from '@material-ui/core'
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import { Auth } from 'aws-amplify'
@@ -9,15 +9,19 @@ import './App.css';
 
 // Main application function
 function App() {
- const [ screen, setScreen ] = useState(null)
-  let token 
-	Auth.currentSession()
-		.then( res => token = res.getAccessToken())
-		.catch( err => console.log(err) )
+  const [ screen, setScreen ] = useState(null)
+	const [ token, setToken ] = useState("")
+
+	useEffect (() => {
+		Auth.currentSession()
+			.then ( res => setToken(res.getIdToken().getJwtToken()) )
+			.catch( err => console.log(err) )
+	}, [])
+
 	const selectScreen = () => {
 		switch (screen) {
 			case "InputScreen":
-				return ( <InputScreen /> )
+				return ( <InputScreen token={token} /> )
 			case "Review":
 				return ( <Review token={token} /> )
 			default:
