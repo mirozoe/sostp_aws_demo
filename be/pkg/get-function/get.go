@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"time"
-//	"encoding/json"
 	"errors"
 	"fmt"
 	"sort"
@@ -57,19 +56,14 @@ type AccountingItem struct {
 //	return serialized
 //}
 
-func HandleRequestGet(ctx context.Context) (string, error) {
+func HandleRequestGet(ctx context.Context) ([]AccountingItem, error) {
 	records, err := fetchItem(dynaClient, DBTableName)
 	if err != nil {
 		fmt.Println(err)
-		return "", err
+		return []AccountingItem{}, err
 	}
 	recordsSorted := SortRecordsByDate(*records)
-//	serialized, err := json.Marshal(recordsSorted)
-//	if err != nil {
-//		fmt.Println(err)
-//		return "", err
-//	}
-	return fmt.Sprintf("%+v", recordsSorted), nil
+	return recordsSorted, nil
 }
 
 func parseDate(date string) time.Time {
