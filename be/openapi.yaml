@@ -5,7 +5,7 @@ info:
   title: "SOSTP Demo"
 paths:
   /journal:
-    get:
+    post:
       summary: Returns a accounting journal.
       description: Returns stored data.
       responses:

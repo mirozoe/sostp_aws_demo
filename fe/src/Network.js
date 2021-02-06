@@ -1,8 +1,12 @@
 const baseURL = "https://5u0ws0u3fb.execute-api.us-east-2.amazonaws.com/prod"
 
-export const getJournal = async () => {
+export const getJournal = async (token) => {
+	console.log(token)
 	const result = await fetch( `${baseURL}/journal`, {
-		method: 'GET',
+		method: 'POST',
+		body: JSON.stringify({
+			accessToken: token
+		})
 	})
 	if (result.status === 200) {
 		const j = await result.json()

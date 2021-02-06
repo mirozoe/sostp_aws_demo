@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Paper, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Typography } from '@material-ui/core'
+import PropTypes from 'prop-types'
 import { getJournal } from './Network.js'
 
-export const Review = () => {
+export const Review = (props) => {
 	const [ items, setItems ] = useState([])
 
 	useEffect(async () => {
-		setItems(await getJournal())
+		setItems(await getJournal(props.token))
 	}, [])
 
 	items.map( i => console.log(i))
@@ -42,3 +43,8 @@ export const Review = () => {
 		</>
 	)
 }
+
+Review.propTypes = {
+	token: PropTypes.string
+}
+

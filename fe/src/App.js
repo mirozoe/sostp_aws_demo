@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Box, Button, Grid, Paper, Typography} from '@material-ui/core'
 import { withAuthenticator } from '@aws-amplify/ui-react'
+import { Auth } from 'aws-amplify'
 
 import { InputScreen } from './InputScreen.js'
 import { Review } from './Review.js'
@@ -9,13 +10,16 @@ import './App.css';
 // Main application function
 function App() {
  const [ screen, setScreen ] = useState(null)
-
+  let token 
+	Auth.currentSession()
+		.then( res => token = res.getAccessToken())
+		.catch( err => console.log(err) )
 	const selectScreen = () => {
 		switch (screen) {
 			case "InputScreen":
 				return ( <InputScreen /> )
 			case "Review":
-				return ( <Review /> )
+				return ( <Review token={token} /> )
 			default:
 				return ( <Paper style={{ 
 												backgroundImage: "url(/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg)", 
