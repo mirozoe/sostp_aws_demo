@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
 )
 
@@ -45,11 +46,40 @@ func openDynamoDB(region string) {
  dynaClient = dynamodb.New(awsSession)
 }
 
+func fetchItem(dynaClient dynamodbiface.DynamoDBAPI, tableName string) (*[]AccountingItem, error) {
+	input := &dynamodb.ScanInput{
+    TableName: aws.String(tableName),
+  }
+  result, err := dynaClient.Scan(input)
+  if err != nil {
+    return nil, errors.New("Error failed to fetch")
+  }
+
+  items := new([]AccountingItem)
+  err = dynamodbattribute.UnmarshalListOfMaps(result.Items, items)
+  return items, nil
+}
+
+func GetLastFreeItemId(acc *[]AccountingItem) int {
+	max := 0
+	for _, item := range *acc {
+		if item.ItemId > max {
+			max = item.ItemId
+		}
+	}
+	return max + 1
+}
+
 func putItemToDB(dynaClient dynamodbiface.DynamoDBAPI, tableName string, item AccountingItem) error {
+	accounts, err := fetchItem(dynaClient, tableName)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
   input := &dynamodb.PutItemInput{
     Item:     map[string]*dynamodb.AttributeValue{
 			"itemid": {
-				N: aws.String(strconv.Itoa(item.ItemId)),
+				N: aws.String(strconv.Itoa(GetLastFreeItemId(accounts))),
 			},
 			"description": {
 				S: aws.String(item.Description),
@@ -73,7 +103,7 @@ func putItemToDB(dynaClient dynamodbiface.DynamoDBAPI, tableName string, item Ac
     TableName: aws.String(tableName),
   }
 
-	_, err := dynaClient.PutItem(input)
+	_, err = dynaClient.PutItem(input)
   if err != nil {
     return errors.New("Error input record")
   }

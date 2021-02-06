@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { Button, MenuItem, Paper, Select, Snackbar, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import { insertJournal } from './Network.js'
 
 
 export const InputScreen = () => {
-	const [ date, setDate ] = useState(null)
-	const [ desc, setDesc ] = useState(null)
+	const [ date, setDate ] = useState("")
+	const [ desc, setDesc ] = useState("")
 	const [ type, setType ] = useState("FP")
-	const [ price, setPrice ] = useState(null)
-	const [ debit, setDebit ] = useState(null)
-	const [ kredit, setKredit ] = useState(null)
+	const [ price, setPrice ] = useState(0)
+	const [ debit, setDebit ] = useState(0)
+	const [ kredit, setKredit ] = useState(0)
 	const [ dateErr, setDateErr ] = useState(false)
 	const [ descErr, setDescErr ] = useState(false)
 	const [ priceErr, setPriceErr ] = useState(false)
@@ -27,12 +28,12 @@ export const InputScreen = () => {
 	}
 	
 	const zeroizeValues = () => {
-		setDate(null)
-		setDesc(null)
+		setDate("")
+		setDesc("")
 		setType("FP")
-		setPrice(null)
-		setDebit(null)
-		setKredit(null)
+		setPrice(0)
+		setDebit(0)
+		setKredit(0)
 	}
 
 	const validate = () => {
@@ -60,9 +61,8 @@ export const InputScreen = () => {
 		return true
 	}
 
-	const save = async () => {
+	const save = () => {
 		if (validate()) {
-			console.log(`${date}-${desc}-${type}-${price}-${debit}-${kredit}`)
 			const d = {
 				date: date,
 				description: desc,
@@ -71,10 +71,11 @@ export const InputScreen = () => {
 				debit: debit,
 				kredit: kredit
 			}
-			const result = await insertJournal(d)
-			setSaved(result)
-			zeroizeErrors()
-			zeroizeValues()
+			insertJournal(d).then( result => {
+				setSaved(result)
+				zeroizeErrors()
+				zeroizeValues()
+			})
 		}
 	}
 
@@ -91,6 +92,7 @@ export const InputScreen = () => {
 						<TableCell>Datum</TableCell>
 						<TableCell>
 							<TextField 
+								value={ date }
 								onChange={ (d) => setDate(d.target.value) }
 								error={ dateErr }
 								helperText={ dateErr ? "Zadejte datum dokladu" : null }
@@ -101,6 +103,7 @@ export const InputScreen = () => {
 						<TableCell>Popis</TableCell>
 						<TableCell>
 							<TextField 
+								value={ desc }
 								onChange={ (d) => setDesc(d.target.value) }
 								error={ descErr }				
 								helperText={ descErr ? "Zadejte popis účetní operace" : null }
@@ -127,6 +130,7 @@ export const InputScreen = () => {
 						<TableCell>Cena</TableCell>
 						<TableCell>
 							<TextField 
+								value={ price }
 								onChange={ (d) => setPrice(d.target.value) }
 								error={ priceErr }
 								helperText={ priceErr ? "Zadejte částku operace" : null }
@@ -137,6 +141,7 @@ export const InputScreen = () => {
 						<TableCell>Má dáti</TableCell>
 						<TableCell>
 							<TextField 
+								value={ debit }
 								onChange={ (d) => setDebit(d.target.value) }
 								error={ debitErr }
 								helperText={ debitErr ? "Zadajte účet stranu má dáti" : null }
@@ -147,6 +152,7 @@ export const InputScreen = () => {
 						<TableCell>Dal</TableCell>
 						<TableCell>
 							<TextField 
+								value={ kredit }
 								onChange={ (d) => setKredit(d.target.value) }
 								error={ kreditErr }
 								helperText={ kreditErr ? "Zadejte účet stranu dal" : null }
@@ -166,9 +172,11 @@ export const InputScreen = () => {
 				</TableBody>
 			</Table>
 		</TableContainer>
-		<Snackbar open={saved} autoHideDuration={6000} onClose={() => setSaved(false)}>
-        Uloženo
-    </Snackbar>
+		<Snackbar open={saved} autoHideDuration={6000} onClose={() => setSaved(false)} >
+			<Alert severity="success">
+				Uloženo
+			</Alert>
+		</Snackbar>
 		</>
 	)
 }

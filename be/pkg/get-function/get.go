@@ -2,10 +2,11 @@ package main
 
 import (
 	"context"
-//	"encoding/base64"
+	"time"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"sort"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -44,9 +45,8 @@ func HandleRequestGet(ctx context.Context, request events.APIGatewayProxyRequest
 		return resp, err
 	}
 	resp.StatusCode = 200
-//	resp.Body = base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%+v", records)))
-//	resp.IsBase64Encoded = true
-	serialized, err := json.Marshal(records)
+	recordsSorted := SortRecordsByDate(*records)
+	serialized, err := json.Marshal(recordsSorted)
 	if err != nil {
 		fmt.Println(err)
 		resp.StatusCode = 402
@@ -56,6 +56,23 @@ func HandleRequestGet(ctx context.Context, request events.APIGatewayProxyRequest
 	return resp, nil
 }
 
+func parseDate(date string) time.Time {
+	t, err := time.Parse("2006-01-02", date) 
+	if err != nil {
+		fmt.Printf("Cannot parse time %s\n", date)
+		return time.Now()
+	}
+	return t
+}
+
+func SortRecordsByDate(records []AccountingItem) []AccountingItem {
+	sort.Slice(records, func (i,j int) bool {
+			t1 := parseDate(records[i].Date)
+			t2 := parseDate(records[j].Date)
+			return t1.Before(t2)
+	})
+	return records
+}
 
 func fetchItem(dynaClient dynamodbiface.DynamoDBAPI, tableName string) (*[]AccountingItem, error) {
 	input := &dynamodb.ScanInput{
