@@ -1,0 +1,130 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usetheme{Dresden}
+
+\title{Představení AWS}
+\subtitle{Vybrané služby}
+\author{Miroslav Hlávka}
+\date{2021}
+\titlegraphic{\includegraphics[scale=0.2]{Cc-by-nc_icon.jpg}}
+
+\begin{document}
+
+%Title page
+\frame{\titlepage}
+
+%Content
+\begin{frame}
+	\frametitle{Obsah}
+	\begin{enumerate}
+		\item O AWS
+		\item AWS Lambda
+		\item AWS Amplify
+		\item AWS API Gateway
+		\item AWS DynamoDB
+		\item AWS Cognito
+		\item AWS CloudWatch a IAM
+	\end{enumerate}
+\end{frame}
+
+%About AWS
+\begin{frame}
+	\frametitle{O AWS}
+	\begin{itemize}
+		\item Amazon Web Services je splečností Amazonu
+		\item Uvedena do provozu v roce 2002
+		\item Poskytuje on-demand cloud services s filosofií pay-as-you-go
+		\item Gartner řadí AWS mezi leadery trhu s cloudovými službami
+		\item Služby, které AWS poskytuje lze většinou velmi dobře kombinovat
+		\item Nástroj AWS CLI umožňuje automatizovat aktualizace
+		\item Řada služeb je poskytována s omezním zdarma
+	\end{itemize}
+	\begin{block}{Magic quadrant}
+		https://pages.awscloud.com/GLOBAL-multi-DL-gartner-mq-cips-2020-learn.html
+	\end{block}
+\end{frame}
+
+%About Lambda
+\begin{frame}
+	\frametitle{AWS Lambda (2014)}
+	\begin{itemize}
+		\item Hosting serverless služeb s podporou Go, Python, Java apod.
+		\item Jedná se o generickou službu, kterou lze kombinovat s dalšími službami AWS
+		\item Umožňuje deployment ve formě docker image
+		\item Cena je odvozena: \begin{math}\text{množstí spuštění} * \text{velikosti alokované paměti} * \text{délka běhu}\end{math}
+	\end{itemize}
+	\begin{block}{Cenová kalkulace}
+		https://aws.amazon.com/lambda/pricing/
+	\end{block}
+\end{frame}
+
+%About Amplify
+\begin{frame}
+	\frametitle{AWS Amplify (2018)}
+	\begin{itemize}
+		\item Hosting webových/mobilních služeb včetně konfigurace back-endu
+		\item Podporuje JS, React/React Native, Angular apod.
+		\item Implementuje CI/CD pipeline a update kódu se provádí push do git repozitáře nebo AWS CLI
+		\item Cenu je odvozena: \begin{math}\text{počet build minut} + \text{diskový prostor} + \text{přenesená data}\end{math}
+	\end{itemize}
+	\begin{block}{Cenová kalkulace}
+		https://aws.amazon.com/amplify/pricing/
+	\end{block}
+\end{frame}
+
+%About API Gateway
+\begin{frame}
+	\frametitle{AWS API Gateway (2015)}
+	\begin{itemize}
+		\item Lambda neumožňuje přijmout HTTP požadavek a to řeší API Gateway
+		\item Představuje definici REST API/WebSocket s možnostmi authentikace/autorizace, limitů volání, CORS, headers rewrite apod.
+		\item Podporuje specifikaci Swagger/OpenAPI
+		\item Cena je odvozená od počtu volání
+	\end{itemize}
+	\begin{block}{Cenová kalkulace}
+		https://aws.amazon.com/api-gateway/pricing/
+	\end{block}
+\end{frame}
+
+%About DynamoDB
+\begin{frame}
+	\frametitle{AWS DynamoDB (2012)}
+	\begin{itemize}
+		\item NoSQL databáze
+		\item Jednoduchá obsluha
+		\item Cena je odvozena: \begin{math}\text{diskový prostor} + \text{přenesená data}\end{math}
+	\end{itemize}
+	\begin{block}{Cenová kalkulace}
+		https://aws.amazon.com/dynamodb/pricing/on-demand/
+	\end{block}
+\end{frame}
+
+%About Cognito
+\begin{frame}
+	\frametitle{AWS Cognito (2014)}
+	\begin{itemize}
+		\item Poskytuje správu uživatelů a federaci s dalšími providery (FB, Google, Azure)
+		\item Správa uživatelů, registrace, změna hesla, požadavky na heslo, přihlášení,  apod.
+		\item Cena je odvozena od počtu uživatelů přihlášených za měsíc
+	\end{itemize}
+	\begin{block}{Cenová kalkulace}
+		https://aws.amazon.com/cognito/pricing/
+	\end{block}
+\end{frame}
+
+%About CloudWatch and IAM
+\begin{frame}
+	\frametitle{AWS CloudWatch a IAM (2010)}
+	\begin{itemize}
+		\item CloudWatch je log s možností tvorby upozornění a přehledů
+		\item Výpočet ceny je složitý, ale metrikami jsou množstí logů, diskový prostor
+		\item IAM správa oprávnění jednotlivých služeb
+		\item Jedná se o interní službu, která není zpoplatněna
+	\end{itemize}
+	\begin{block}{Cenová kalkulace}
+		https://aws.amazon.com/cloudwatch/pricing/
+	\end{block}
+\end{frame}
+
+\end{document}

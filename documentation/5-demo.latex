@@ -1,0 +1,17 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usetheme{Dresden}
+
+\title{Demo účetního systému}
+\subtitle{Proof of Concept}
+\author{Miroslav Hlávka}
+\date{2021}
+\titlegraphic{\includegraphics[scale=0.2]{Cc-by-nc_icon.jpg}}
+
+\begin{document}
+
+%Title page
+\frame{\titlepage}
+
+\end{document}
