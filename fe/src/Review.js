@@ -12,7 +12,7 @@ export const Review = (props) => {
 
 	return (
 		<>
-		<Typography>Účetní denník</Typography>
+		<Typography>Účetní deník</Typography>
 		<TableContainer component={Paper}>
 			<Table size="small">
 				<TableHead>

@@ -50,7 +50,7 @@ function App() {
 										variant="contained" 
 										color="secondary"
 										onClick={() => setScreen("Review")}	
-									>Účetní denník</Button>
+									>Účetní deník</Button>
 								</Grid>
 								<Grid item	>
 									<Button 
