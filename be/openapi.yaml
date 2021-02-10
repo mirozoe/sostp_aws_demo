@@ -22,15 +22,15 @@ paths:
   /insert:
     post:
       summary: Inserts accounting item into DB
-      description: Inserts accounting item into DB
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountItem'
       responses:
         '200':
-          description: Successfuly inserted
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountItem'
-              
+          description: Successfuly insertion
         '401':
           description: Error during insertion
 components:
@@ -63,3 +63,4 @@ components:
           type: integer
         kredit:
           type: integer
+

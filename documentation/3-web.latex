@@ -1,0 +1,110 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usetheme{Dresden}
+
+\title{Design aplikace}
+\author{Miroslav Hlávka}
+\date{2021}
+\titlegraphic{\includegraphics[scale=0.2]{Cc-by-nc_icon.jpg}}
+
+\begin{document}
+
+%Title page
+\frame{\titlepage}
+
+%Content
+\begin{frame}
+	\frametitle{Obsah}
+	\begin{enumerate}
+		\item Historie vývoje webu
+		\item Aktuální design
+		\item Front-end
+		\item Back-end
+		\item REST API
+		\item AWS Lambda BE
+	\end{enumerate}
+\end{frame}
+
+%Web history
+\begin{frame}
+	\frametitle{Historie vývoje webu}
+	\begin{itemize}
+		\item Definice HTML (1990)
+		\item PHP, JavaScript (1995), CSS (1998), Macromedia Flash s Action Scriptem (2000), jQuery (2006)
+		\item AngularJS (2010), Bootstrap (2011), ReactJS (2013), HTML5 (2014)
+	\end{itemize}
+\end{frame}
+
+%Web history
+\begin{frame}
+	\frametitle{Historie vývoje webu}
+	\begin{itemize}
+		\item Multiple Page Applications - statické HTML se server-side renderingem (PHP, Java, apod.)
+		\item AJAX a jQuery řešily upload stránky bez nutnosti reload
+		\item Rich Internet Applications - Flash, Silverlight, Java Applets, JavaFX
+		\item Single Page Applications - client-side UI renderování a back-end zdroj dat
+	\end{itemize}
+\end{frame}
+
+
+%Front-end
+\begin{frame}
+	\frametitle{Front-end}
+	\begin{itemize}
+		\item Aplikace běžící na straně klienta
+		\item Nejpoužívanější je JS (alternativa WebAssembly)
+		\item Podpora mobilních zařízení
+		\item Data jsou získávána z backendu asynchronním voláním
+	\end{itemize}
+	\begin{block}{Obliba JS frameworků}
+		https://blog.bitsrc.io/top-5-javascript-frameworks-past-present-and-future-8b6fda39de02
+	\end{block}
+\end{frame}
+
+%Back-end
+\begin{frame}
+	\frametitle{Back-end}
+	\begin{itemize}
+		\item Podpora mnoha jazyků (Java, Go, PHP, apod.)
+		\item Potřeba běhu 24*7
+		\item Často implementuje business logic, správu dat, management uživatelů apod.
+	\end{itemize}
+\end{frame}
+
+%REST API
+\begin{frame}
+	\frametitle{REST API}
+	\begin{itemize}
+		\item Komunikace mezi FE a BE pomocí různých metod (SOAP, CORBA - 1998)
+		\item REST API (2000)
+		\item Využívá HTTP protokol a jeho request types (GET, POST, PUT, OPTIONS, DELETE, apod.)
+		\item Data jsou předávána nejčastěji formou JSON
+		\item Alternativou jsou GraphQL, gRPC apod.
+	\end{itemize}
+\end{frame}
+
+%Swagger
+\begin{frame}
+	\frametitle{Swagger}
+	\begin{itemize}
+		\item Jazyk pro popis REST API (2011)
+		\item Představuje jednoznačnou specifikaci API
+		\item Umožňuje použití mock nástrojů při vývoji FE/BE
+		\item Je implementován řadou jazyků a umožňuje automatické generování modelu
+	\end{itemize}
+	\begin{block}{Swagger editor}
+		https://editor.swagger.io
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{AWS Lambda BE}
+	\begin{itemize}
+		\item Vývoj pro serverless aplikace se značně liší od zažitých způsobů
+		\item AWS Cloud9 IDE
+		\item Lokálně pak potřebujete kód pokaždé nahrát do cloudu nebo použijete např. AWS SAM Local CLI
+	\end{itemize}
+\end{frame}
+
+\end{document}

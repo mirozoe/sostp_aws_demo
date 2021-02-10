@@ -13,3 +13,7 @@ V adresáří `fe` je zdrojový kód pro front-end aplikaci. Upload do AWS Ampli
 ### BE
 Představuje BE aplikace, která je zodpovědná za příjem a odeslání dat HTTP klientovi a ukládání/čtení dat do AWS DynamoDB. Update aplikace je potřeba provést z adresáře be/ spuštěním skriptu `deploy.sh`.
 Ve stejném adresáři také naleznete openapi.yaml což, je OpenAPI definice REST API.
+
+## Licence
+Videa - CC-BY-NC
+Kód - GPLv3
